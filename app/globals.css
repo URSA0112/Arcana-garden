@@ -135,6 +135,20 @@ body {
   animation: text-outline-breathe 3.8s ease-in-out infinite;
 }
 
+/* Card grid hover — CSS-based so Framer Motion scale never conflicts */
+.card-hover-wrap {
+  transition: transform 0.17s ease, filter 0.17s ease;
+  will-change: transform;
+}
+.card-hover-wrap.can-pick:hover {
+  transform: translateY(-8px) scale(1.1);
+  filter: drop-shadow(0 10px 20px rgba(198,168,91,0.35));
+}
+.card-hover-wrap.can-pick:active {
+  transform: translateY(-2px) scale(0.97);
+  transition-duration: 0.07s;
+}
+
 /* Floating dust for history section */
 @keyframes float-dust {
   0%, 100% { transform: translateY(0)   translateX(0);   opacity: 0.3; }
