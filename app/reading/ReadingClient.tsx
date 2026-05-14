@@ -305,6 +305,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
       emotionalContext,
       zodiacSign,
       cards: readingCards.map(s => ({ id: s.card.id, name: s.card.name, reversed: s.reversed, label: s.label })),
+      summary: parsedReading.synthesis,
       sections: parsedReading,
       aiReading,
       note,
