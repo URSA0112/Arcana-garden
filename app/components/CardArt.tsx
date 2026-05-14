@@ -25,7 +25,7 @@ export default function CardArt({
       style={{
         width: w,
         height: h,
-        border: '1px solid rgba(98, 129, 65, 0.3)',
+        border: '1px solid rgba(198, 168, 91, 0.2)',
         boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
       }}
     >

@@ -93,13 +93,13 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
           Tarot Reading
         </p>
         <h1
-          className="text-5xl font-bold mb-3 text-glow"
+          className="text-4xl md:text-5xl font-light mb-3 text-glow"
           style={{ fontFamily: 'var(--font-cinzel), Georgia, serif', color: '#EBD5AB' }}
         >
           The Reading Room
         </h1>
         <p
-          className="text-xl"
+          className="text-lg md:text-xl"
           style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: '#8BAE66', fontStyle: 'italic' }}
         >
           Shuffle the deck and let the cards speak.
@@ -107,7 +107,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
       </div>
 
       {/* Spread selector */}
-      <div className="flex justify-center gap-3 mb-8">
+      <div className="flex flex-col sm:flex-row justify-center gap-3 mb-8">
         {(['1', '3'] as Spread[]).map((s) => (
           <button
             type="button"
@@ -134,7 +134,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
           type="button"
           onClick={draw}
           disabled={shuffling}
-          className="relative group px-10 py-3.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 overflow-hidden"
+          className="relative group px-10 py-3.5 rounded-full transition-all duration-300 hover:scale-105 hover:glow-primary disabled:opacity-50 disabled:cursor-not-allowed disabled:scale-100 overflow-hidden"
           style={{
             background: 'linear-gradient(135deg, #4a6632 0%, #628141 50%, #4a6632 100%)',
             color: '#EBD5AB',
@@ -158,7 +158,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-wrap justify-center gap-8 mb-12"
+            className="flex flex-wrap justify-center gap-4 sm:gap-8 mb-12"
           >
             {drawn.map((d, i) => (
               <div key={`${d.card.id}-${i}`} className="flex flex-col items-center gap-3">
@@ -201,7 +201,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
                     className="text-center max-w-[140px]"
                   >
                     <p
-                      className="text-xs font-semibold mb-1 leading-tight"
+                      className="text-xs font-light mb-1 leading-tight"
                       style={{ color: '#EBD5AB', fontFamily: 'var(--font-cinzel), serif' }}
                     >
                       {d.card.name}
@@ -242,7 +242,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
               <div className="flex items-start justify-between mb-3">
                 <div>
                   <h3
-                    className="font-semibold text-lg"
+                    className="font-light text-lg"
                     style={{ color: '#EBD5AB', fontFamily: 'var(--font-cormorant), Georgia, serif', fontStyle: 'italic' }}
                   >
                     {d.card.name}

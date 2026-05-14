@@ -1105,18 +1105,18 @@ export function getDailyCard(): TarotCard {
   return tarotCards[seed % tarotCards.length]
 }
 
-// Derives the public-folder image path from card data.
-// Major arcana:  /_00_Fool.jpg, /_02_High_Priestess.jpg …
-// Minor arcana:  /_Wands_01.jpg, /_Cups_14.jpg …
+const GITHUB_IMAGES = 'https://raw.githubusercontent.com/krates98/tarotcardapi/main/images'
+
+// Cards whose filenames deviate from the standard lowercase-no-spaces pattern
+const IMAGE_OVERRIDES: Record<string, string> = {
+  'The Lovers': 'TheLovers.jpg',   // mixed-case + .jpg in the repo
+  'Strength':   'thestrength.jpeg', // repo adds "the" prefix even though card name doesn't
+}
+
 export function getCardImagePath(card: TarotCard): string {
-  if (card.arcana === 'major') {
-    const num = card.number.toString().padStart(2, '0')
-    const namePart = card.name
-      .replace(/^The /, '')
-      .replace(/ /g, '_')
-    return `/_${num}_${namePart}.jpg`
+  if (IMAGE_OVERRIDES[card.name]) {
+    return `${GITHUB_IMAGES}/${IMAGE_OVERRIDES[card.name]}`
   }
-  const suit = card.suit![0].toUpperCase() + card.suit!.slice(1)
-  const num = card.number.toString().padStart(2, '0')
-  return `/_${suit}_${num}.jpg`
+  const filename = card.name.toLowerCase().replace(/\s+/g, '')
+  return `${GITHUB_IMAGES}/${filename}.jpeg`
 }

@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { TarotCard } from '@/lib/tarot-data'
 import CardArt from '../components/CardArt'
 
+
 type Filter = 'all' | 'major' | 'wands' | 'cups' | 'swords' | 'pentacles'
 
 const filterLabels: Record<Filter, string> = {
@@ -40,24 +41,25 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
   }, [cards, filter, search])
 
   return (
+    <div className="min-h-screen" style={{ backgroundColor: '#0A0A0A' }}>
     <div className="max-w-6xl mx-auto px-4 py-12">
       {/* Header */}
       <div className="mb-10 text-center">
         <p
           className="text-xs tracking-[0.3em] uppercase mb-3"
-          style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+          style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
         >
           All 78 Cards
         </p>
         <h1
-          className="text-5xl font-bold mb-3 text-glow"
-          style={{ fontFamily: 'var(--font-cinzel), Georgia, serif', color: '#EBD5AB' }}
+          className="text-4xl md:text-5xl mb-3 text-glow"
+          style={{ fontFamily: 'var(--font-cinzel), Georgia, serif', color: '#F2F2F2' }}
         >
           The Library
         </h1>
         <p
           className="text-xl"
-          style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: '#8BAE66', fontStyle: 'italic' }}
+          style={{ fontFamily: 'var(--font-cormorant), Georgia, serif', color: '#B3B3B3', fontStyle: 'italic' }}
         >
           Indexed and illuminated.
         </p>
@@ -72,9 +74,9 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
             onClick={() => setFilter(f)}
             className="px-4 py-1.5 rounded-full text-sm transition-all duration-200 hover:scale-105"
             style={{
-              border: `1px solid ${filter === f ? 'rgba(139,174,102,0.6)' : 'rgba(98,129,65,0.25)'}`,
-              backgroundColor: filter === f ? 'rgba(98, 129, 65, 0.18)' : 'transparent',
-              color: filter === f ? '#EBD5AB' : '#7DA55A',
+              border: `1px solid ${filter === f ? 'rgba(198,168,91,0.5)' : '#222222'}`,
+              backgroundColor: filter === f ? 'rgba(198,168,91,0.1)' : 'transparent',
+              color: filter === f ? '#F2F2F2' : '#7A7A7A',
               fontFamily: filter === f ? 'var(--font-cinzel), serif' : 'inherit',
               fontSize: filter === f ? '0.7rem' : '0.875rem',
               letterSpacing: filter === f ? '0.05em' : '0',
@@ -90,7 +92,7 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
       <div className="max-w-sm mx-auto mb-10 relative">
         <span
           className="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm pointer-events-none"
-          style={{ color: '#4a5e40' }}
+          style={{ color: '#7A7A7A' }}
         >
           ⌕
         </span>
@@ -101,9 +103,9 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
           onChange={(e) => setSearch(e.target.value)}
           className="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm outline-none transition-all"
           style={{
-            backgroundColor: 'rgba(26, 36, 32, 0.7)',
-            border: '1px solid rgba(98, 129, 65, 0.25)',
-            color: '#EBD5AB',
+            backgroundColor: '#141414',
+            border: '1px solid #222222',
+            color: '#F2F2F2',
             backdropFilter: 'blur(8px)',
           }}
         />
@@ -122,8 +124,8 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
               <div
                 className="rounded-2xl overflow-hidden border transition-all duration-250 group-hover:scale-[1.04] group-hover:glow-sm"
                 style={{
-                  borderColor: 'rgba(98, 129, 65, 0.2)',
-                  backgroundColor: 'rgba(26, 36, 32, 0.7)',
+                  borderColor: '#222222',
+                  backgroundColor: '#141414',
                   backdropFilter: 'blur(6px)',
                 }}
               >
@@ -131,12 +133,12 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
                   <CardArt card={card} size="sm" priority={i < 12} />
                 </div>
                 <div className="px-2 pb-3 text-center">
-                  <p className="text-xs font-medium leading-tight mb-0.5" style={{ color: '#EBD5AB' }}>
+                  <p className="text-xs font-light leading-tight mb-0.5" style={{ color: '#F2F2F2' }}>
                     {card.name}
                   </p>
                   <p
                     className="text-[10px] capitalize tracking-wide"
-                    style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+                    style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                   >
                     {card.arcana === 'major' ? 'Major' : card.suit}
                   </p>
@@ -148,11 +150,12 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-20" style={{ color: '#4a5e40' }}>
+        <div className="text-center py-20" style={{ color: '#7A7A7A' }}>
           <div className="text-4xl mb-3">◈</div>
           <p>No cards match your search.</p>
         </div>
       )}
+    </div>
     </div>
   )
 }

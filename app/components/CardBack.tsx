@@ -19,23 +19,23 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
     >
       <defs>
         <radialGradient id={`back-grad-${size}`} cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stopColor="#1E2E26" />
-          <stop offset="70%" stopColor="#141F1B" />
-          <stop offset="100%" stopColor="#0E1714" />
+          <stop offset="0%" stopColor="#16130A" />
+          <stop offset="70%" stopColor="#100E07" />
+          <stop offset="100%" stopColor="#0A0904" />
         </radialGradient>
 
         <radialGradient id={`center-glow-${size}`} cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#628141" stopOpacity="0.2" />
-          <stop offset="100%" stopColor="#628141" stopOpacity="0" />
+          <stop offset="0%" stopColor="#C6A85B" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="#C6A85B" stopOpacity="0" />
         </radialGradient>
 
         <pattern id={`back-pattern-${size}`} x="0" y="0" width={14 * scale} height={14 * scale} patternUnits="userSpaceOnUse">
           <path
             d={`M${r(7*scale)} 0L${r(14*scale)} ${r(7*scale)}L${r(7*scale)} ${r(14*scale)}L0 ${r(7*scale)}Z`}
             fill="none"
-            stroke="#628141"
+            stroke="#C6A85B"
             strokeWidth={r(0.3 * scale)}
-            strokeOpacity="0.3"
+            strokeOpacity="0.18"
           />
         </pattern>
       </defs>
@@ -50,7 +50,7 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
         width={dim - 8 * scale} height={h - 8 * scale}
         rx={6 * scale}
         fill="none"
-        stroke="#628141"
+        stroke="#C6A85B"
         strokeWidth={0.8 * scale}
         strokeOpacity="0.45"
       />
@@ -60,9 +60,9 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
         width={dim - 16 * scale} height={h - 16 * scale}
         rx={4 * scale}
         fill="none"
-        stroke="#8BAE66"
+        stroke="#D4B86A"
         strokeWidth={0.4 * scale}
-        strokeOpacity="0.2"
+        strokeOpacity="0.22"
       />
 
       {/* Center glow */}
@@ -80,9 +80,9 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
             y1={r(cy + r1 * Math.sin(angle))}
             x2={r(cx + r2 * Math.cos(angle))}
             y2={r(cy + r2 * Math.sin(angle))}
-            stroke="#628141"
+            stroke="#C6A85B"
             strokeWidth={r(0.6 * scale)}
-            strokeOpacity={i % 2 === 0 ? 0.6 : 0.3}
+            strokeOpacity={i % 2 === 0 ? 0.55 : 0.25}
           />
         )
       })}
@@ -91,9 +91,9 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
       <circle
         cx={cx} cy={cy} r={34 * scale}
         fill="none"
-        stroke="#628141"
+        stroke="#C6A85B"
         strokeWidth={0.5 * scale}
-        strokeOpacity="0.4"
+        strokeOpacity="0.35"
         strokeDasharray={`${2 * scale} ${3 * scale}`}
       />
 
@@ -101,22 +101,22 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
       <circle
         cx={cx} cy={cy} r={20 * scale}
         fill="none"
-        stroke="#8BAE66"
+        stroke="#D4B86A"
         strokeWidth={0.4 * scale}
-        strokeOpacity="0.3"
+        strokeOpacity="0.28"
       />
 
       {/* Inner circle */}
       <circle
         cx={cx} cy={cy} r={8 * scale}
         fill="none"
-        stroke="#8BAE66"
+        stroke="#D4B86A"
         strokeWidth={0.8 * scale}
-        strokeOpacity="0.55"
+        strokeOpacity="0.5"
       />
 
       {/* Center dot */}
-      <circle cx={cx} cy={cy} r={2.5 * scale} fill="#EBD5AB" fillOpacity="0.55" />
+      <circle cx={cx} cy={cy} r={2.5 * scale} fill="#F2E8D0" fillOpacity="0.55" />
 
       {/* Corner flourishes */}
       {[
@@ -126,9 +126,9 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
         [14 * scale, h - 14 * scale, 270],
       ].map(([fx, fy, rot], idx) => (
         <g key={idx} transform={`translate(${fx}, ${fy}) rotate(${rot})`}>
-          <line x1={0} y1={0} x2={6 * scale} y2={0} stroke="#628141" strokeWidth={0.6 * scale} strokeOpacity="0.5" />
-          <line x1={0} y1={0} x2={0} y2={6 * scale} stroke="#628141" strokeWidth={0.6 * scale} strokeOpacity="0.5" />
-          <circle cx={0} cy={0} r={1.2 * scale} fill="#8BAE66" fillOpacity="0.5" />
+          <line x1={0} y1={0} x2={6 * scale} y2={0} stroke="#C6A85B" strokeWidth={0.6 * scale} strokeOpacity="0.5" />
+          <line x1={0} y1={0} x2={0} y2={6 * scale} stroke="#C6A85B" strokeWidth={0.6 * scale} strokeOpacity="0.5" />
+          <circle cx={0} cy={0} r={1.2 * scale} fill="#D4B86A" fillOpacity="0.5" />
         </g>
       ))}
 
@@ -139,7 +139,7 @@ export default function CardBack({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' })
         fontFamily="Georgia, serif"
         fontSize={5.5 * scale}
         textAnchor="middle"
-        fill="#EBD5AB"
+        fill="#F2E8D0"
         fillOpacity="0.3"
         letterSpacing={1.5 * scale}
       >
