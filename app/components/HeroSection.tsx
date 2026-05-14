@@ -68,28 +68,22 @@ export default function HeroSection({ card }: { card: TarotCard }) {
           Tarot · Learning · Reflection
         </p>
 
-        <div
+        <h1
           ref={titleRef}
-          className="relative inline-block mb-6 px-4 py-2"
-          style={{ opacity: 0, transform: 'translateY(50px)' }}
+          className="text-outline-anim text-7xl sm:text-[8rem] lg:text-[11rem] leading-[1.02] tracking-[0.14em] mb-6"
+          style={{
+            opacity: 0,
+            transform: 'translateY(50px)',
+            fontFamily: 'var(--font-title), serif',
+            fontWeight: 400,
+            background: 'linear-gradient(135deg, #9A7B2E 0%, #C6A85B 28%, #F0CC6C 52%, #D4A843 72%, #9A7B2E 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
         >
-          {/* Animated thin golden/black border */}
-          <div className="title-border-anim absolute inset-0 rounded-[3px] border border-[#0C0A05] pointer-events-none" />
-
-          <h1
-            className="text-7xl sm:text-[8rem] lg:text-[11rem] leading-[1.02] tracking-[0.14em]"
-            style={{
-              fontFamily: 'var(--font-title), serif',
-              fontWeight: 400,
-              background: 'linear-gradient(135deg, #9A7B2E 0%, #C6A85B 28%, #F0CC6C 52%, #D4A843 72%, #9A7B2E 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-          >
-            Arcana Garden
-          </h1>
-        </div>
+          Arcana Garden
+        </h1>
 
         <p
           ref={subRef}

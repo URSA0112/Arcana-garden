@@ -124,19 +124,15 @@ body {
   background: linear-gradient(90deg, transparent, rgba(198,168,91,0.38), transparent);
 }
 
-/* Animated golden/black border for hero title */
-@keyframes golden-border-breathe {
-  0%, 100% {
-    border-color: rgba(12, 10, 5, 0.97);
-    box-shadow: none;
-  }
-  50% {
-    border-color: rgba(198, 168, 91, 0.72);
-    box-shadow: 0 0 20px rgba(198, 168, 91, 0.14), 0 0 6px rgba(198, 168, 91, 0.1);
-  }
+/* Animated text outline stroke for hero title */
+@keyframes text-outline-breathe {
+  0%, 100% { -webkit-text-stroke-color: rgba(8, 6, 2, 0.95); }
+  50%       { -webkit-text-stroke-color: rgba(198, 168, 91, 0.9); }
 }
-.title-border-anim {
-  animation: golden-border-breathe 3.8s ease-in-out infinite;
+.text-outline-anim {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(8, 6, 2, 0.95);
+  animation: text-outline-breathe 3.8s ease-in-out infinite;
 }
 
 /* Floating dust for history section */
