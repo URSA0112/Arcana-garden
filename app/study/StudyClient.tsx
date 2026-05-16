@@ -113,7 +113,7 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#0A0A0A' }}>
         <div className="max-w-lg w-full mx-auto px-6 py-16 text-center">
           <p
-            className="text-[10px] tracking-[0.4em] uppercase mb-4"
+            className="text-[12px] tracking-[0.4em] uppercase mb-4"
             style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
           >
             Quiz Mode
@@ -220,7 +220,7 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
                 <div className="text-2xl font-light mb-1" style={{ fontFamily: 'var(--font-cinzel), serif', color: '#C6A85B' }}>
                   {value}
                 </div>
-                <div className="text-[10px] tracking-[0.15em] uppercase" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>
+                <div className="text-[12px] tracking-[0.15em] uppercase" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>
                   {label}
                 </div>
               </div>
@@ -260,7 +260,7 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
           <button
             type="button"
             onClick={() => setPhase('setup')}
-            className="text-[10px] tracking-[0.12em] uppercase transition-colors hover:text-[#C6A85B]"
+            className="text-[12px] tracking-[0.12em] uppercase transition-colors hover:text-[#C6A85B]"
             style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}
           >
             ← Quit
@@ -297,7 +297,7 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
 
         {/* Progress */}
         <div className="mb-8">
-          <div className="flex justify-between text-[10px] mb-1.5 tracking-[0.06em]" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>
+          <div className="flex justify-between text-[12px] mb-1.5 tracking-[0.06em]" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>
             <span>{index + 1} / {deck.length}</span>
             <span>{Math.round(progress)}%</span>
           </div>
@@ -331,7 +331,7 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
 
               <div className="text-center sm:text-left">
                 <p
-                  className="text-[10px] tracking-[0.3em] uppercase mb-2"
+                  className="text-[12px] tracking-[0.3em] uppercase mb-2"
                   style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                 >
                   {side === 'reversed' ? '↕ Reversed · ' : ''}What does this card mean?
@@ -346,7 +346,7 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
                   {current.keywords.map(k => (
                     <span
                       key={k}
-                      className="text-[10px] px-2 py-0.5 rounded-full"
+                      className="text-[12px] px-2 py-0.5 rounded-full"
                       style={{ backgroundColor: 'rgba(198,168,91,0.07)', color: '#7A7A7A', border: '1px solid rgba(198,168,91,0.12)' }}
                     >
                       {k}
@@ -385,17 +385,17 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
                     style={{ borderColor: border, backgroundColor: bg, color, backdropFilter: 'blur(8px)' }}
                   >
                     <span
-                      className="inline-block w-5 text-[10px] tracking-widest shrink-0 mr-1"
+                      className="inline-block w-5 text-[12px] tracking-widest shrink-0 mr-1"
                       style={{ color: 'rgba(198,168,91,0.35)' }}
                     >
                       {String.fromCharCode(65 + i)}
                     </span>
                     {truncate(opt)}
                     {revealed && isCorrect && (
-                      <span className="ml-2 text-[10px]" style={{ color: '#C6A85B' }}>✓</span>
+                      <span className="ml-2 text-[12px]" style={{ color: '#C6A85B' }}>✓</span>
                     )}
                     {revealed && isChosen && !isCorrect && (
-                      <span className="ml-2 text-[10px]" style={{ color: 'rgba(220,80,80,0.9)' }}>✗</span>
+                      <span className="ml-2 text-[12px]" style={{ color: 'rgba(220,80,80,0.9)' }}>✗</span>
                     )}
                   </motion.button>
                 )

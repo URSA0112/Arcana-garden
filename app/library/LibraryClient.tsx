@@ -137,7 +137,7 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
                     {card.name}
                   </p>
                   <p
-                    className="text-[10px] capitalize tracking-wide"
+                    className="text-[12px] capitalize tracking-wide"
                     style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                   >
                     {card.arcana === 'major' ? 'Major' : card.suit}

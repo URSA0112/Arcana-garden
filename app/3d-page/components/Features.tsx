@@ -154,7 +154,7 @@ export default function Features() {
                 {f.icon}
               </span>
               <span
-                className="text-[10px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full font-medium"
+                className="text-[12px] tracking-[0.18em] uppercase px-2.5 py-1 rounded-full font-medium"
                 style={{
                   backgroundColor: 'rgba(163,230,53,0.08)',
                   border: '1px solid rgba(163,230,53,0.18)',

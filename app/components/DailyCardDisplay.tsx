@@ -63,7 +63,7 @@ export default function DailyCardDisplay({ card }: { card: TarotCard }) {
           </button>
 
           <p
-            className="text-[10px] tracking-[0.15em]"
+            className="text-[12px] tracking-[0.15em]"
             style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}
           >
             Tap the card or button to begin
@@ -102,7 +102,7 @@ export default function DailyCardDisplay({ card }: { card: TarotCard }) {
             className="flex flex-col gap-4 flex-1 min-w-0"
           >
             <p
-              className="text-[10px] tracking-[0.28em] uppercase"
+              className="text-[12px] tracking-[0.28em] uppercase"
               style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
             >
               {arcanaLabel}
@@ -159,7 +159,7 @@ export default function DailyCardDisplay({ card }: { card: TarotCard }) {
               }}
             >
               <p
-                className="text-[10px] tracking-[0.22em] uppercase mb-1.5"
+                className="text-[12px] tracking-[0.22em] uppercase mb-1.5"
                 style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
               >
                 Today&apos;s Reflection

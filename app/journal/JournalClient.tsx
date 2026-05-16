@@ -171,13 +171,13 @@ export default function JournalClient() {
                             <div className="pt-5 pb-4 mb-1 flex flex-col gap-1.5">
                               {entry.question && (
                                 <p style={{ color: '#B3B3B3', fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: '1rem', fontStyle: 'italic', lineHeight: '1.6' }}>
-                                  <span className="not-italic text-[10px] tracking-[0.18em] uppercase mr-2" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>Situation</span>
+                                  <span className="not-italic text-[12px] tracking-[0.18em] uppercase mr-2" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>Situation</span>
                                   {entry.question}
                                 </p>
                               )}
                               {entry.emotionalContext && (
                                 <p style={{ color: '#B3B3B3', fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: '1rem', fontStyle: 'italic', lineHeight: '1.6' }}>
-                                  <span className="not-italic text-[10px] tracking-[0.18em] uppercase mr-2" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>Feeling</span>
+                                  <span className="not-italic text-[12px] tracking-[0.18em] uppercase mr-2" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>Feeling</span>
                                   {entry.emotionalContext}
                                 </p>
                               )}
@@ -192,7 +192,7 @@ export default function JournalClient() {
                               return (
                                 <div key={i} className="flex flex-col items-center gap-2">
                                   {c.label && (
-                                    <span className="text-[10px] tracking-[0.2em] uppercase" style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}>
+                                    <span className="text-[12px] tracking-[0.2em] uppercase" style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}>
                                       {c.label}
                                     </span>
                                   )}
@@ -211,7 +211,7 @@ export default function JournalClient() {
                           {/* Reading result — synthesis */}
                           {synthesis && (
                             <div className="mt-5 mb-5 rounded-xl px-5 py-4" style={{ backgroundColor: 'rgba(18,28,22,0.65)', border: '1px solid rgba(198,168,91,0.13)' }}>
-                              <p className="text-[10px] tracking-[0.25em] uppercase mb-3" style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}>
+                              <p className="text-[12px] tracking-[0.25em] uppercase mb-3" style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}>
                                 ✦ The Reading
                               </p>
                               <div className="space-y-3">
@@ -226,7 +226,7 @@ export default function JournalClient() {
 
                           {/* Personal note */}
                           <div className="mb-4">
-                            <p className="text-[10px] tracking-[0.2em] uppercase mb-2" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>
+                            <p className="text-[12px] tracking-[0.2em] uppercase mb-2" style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}>
                               Your reflection
                             </p>
                             <textarea
@@ -243,7 +243,7 @@ export default function JournalClient() {
                             <button
                               type="button"
                               onClick={() => deleteEntry(entry.id)}
-                              className="text-[10px] px-4 py-1.5 rounded-lg transition-all hover:border-red-900/50 hover:text-red-400 tracking-[0.1em] uppercase"
+                              className="text-[12px] px-4 py-1.5 rounded-lg transition-all hover:border-red-900/50 hover:text-red-400 tracking-[0.1em] uppercase"
                               style={{ color: '#7A7A7A', border: '1px solid rgba(198,168,91,0.12)', fontFamily: 'var(--font-cinzel), serif' }}
                             >
                               Delete Entry

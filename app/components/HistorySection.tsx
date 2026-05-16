@@ -172,7 +172,7 @@ export default function HistorySection() {
         {/* Header */}
         <div ref={headRef} className="text-center mb-24">
           <p
-            className="text-[10px] tracking-[0.44em] uppercase mb-5"
+            className="text-[12px] tracking-[0.44em] uppercase mb-5"
             style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
           >
             A History of the Cards
@@ -239,7 +239,7 @@ export default function HistorySection() {
                     className={`flex flex-col gap-3 ${imgOnLeft ? 'md:order-2' : 'md:order-1'}`}
                   >
                     <p
-                      className="text-[10px] tracking-[0.38em] uppercase"
+                      className="text-[12px] tracking-[0.38em] uppercase"
                       style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                     >
                       {item.era}

@@ -136,7 +136,7 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2"
         style={{ color: '#374151' }}
       >
-        <span className="text-[10px] tracking-[0.25em] uppercase">Scroll</span>
+        <span className="text-[12px] tracking-[0.25em] uppercase">Scroll</span>
         <div className="h-8 w-[1px]" style={{ backgroundColor: 'rgba(55,65,81,0.6)' }} />
       </div>
     </section>

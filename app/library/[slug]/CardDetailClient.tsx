@@ -35,7 +35,7 @@ function SectionCard({
       <div className="flex items-center gap-2 mb-3">
         <span style={{ color: '#C6A85B', fontSize: '0.85rem' }}>{glyph}</span>
         <h2
-          className="text-[10px] tracking-[0.22em] uppercase"
+          className="text-[12px] tracking-[0.22em] uppercase"
           style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
         >
           {label}
@@ -63,7 +63,7 @@ export default function CardDetailClient({ card }: { card: TarotCard }) {
         <div className="mb-10">
           <Link
             href="/library"
-            className="text-[10px] tracking-[0.15em] uppercase transition-colors hover:text-[#C6A85B]"
+            className="text-[12px] tracking-[0.15em] uppercase transition-colors hover:text-[#C6A85B]"
             style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}
           >
             ← Library
@@ -95,7 +95,7 @@ export default function CardDetailClient({ card }: { card: TarotCard }) {
               className="mb-2"
             >
               <p
-                className="text-[10px] tracking-[0.32em] uppercase mb-3"
+                className="text-[12px] tracking-[0.32em] uppercase mb-3"
                 style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
               >
                 {arcanaLabel}
@@ -217,7 +217,7 @@ export default function CardDetailClient({ card }: { card: TarotCard }) {
                 <div className="flex items-center gap-2 mb-3">
                   <span style={{ color: '#C6A85B', fontSize: '0.85rem' }}>#</span>
                   <h2
-                    className="text-[10px] tracking-[0.22em] uppercase"
+                    className="text-[12px] tracking-[0.22em] uppercase"
                     style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                   >
                     Numerology
@@ -261,7 +261,7 @@ export default function CardDetailClient({ card }: { card: TarotCard }) {
                 <div className="flex items-center gap-2 mb-3">
                   <span style={{ color: '#C6A85B', fontSize: '0.85rem' }}>◇</span>
                   <h2
-                    className="text-[10px] tracking-[0.22em] uppercase"
+                    className="text-[12px] tracking-[0.22em] uppercase"
                     style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                   >
                     Element
@@ -297,7 +297,7 @@ export default function CardDetailClient({ card }: { card: TarotCard }) {
         <div className="mt-12 text-center">
           <Link
             href="/library"
-            className="text-[10px] tracking-[0.15em] uppercase transition-colors hover:text-[#C6A85B]"
+            className="text-[12px] tracking-[0.15em] uppercase transition-colors hover:text-[#C6A85B]"
             style={{ color: '#7A7A7A', fontFamily: 'var(--font-cinzel), serif' }}
           >
             ← Back to Library

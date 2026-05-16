@@ -36,7 +36,7 @@ export default function ThreeDPage() {
 
       {/* ── 3. Footer ── */}
       <footer
-        className="border-t text-center py-10 text-[10px] tracking-[0.28em] uppercase"
+        className="border-t text-center py-10 text-[12px] tracking-[0.28em] uppercase"
         style={{
           borderColor: 'rgba(255,255,255,0.05)',
           color: '#374151',
