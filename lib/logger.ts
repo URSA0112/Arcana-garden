@@ -29,7 +29,10 @@ const READINGS_KEY = 'ag:readings'
 
 async function redis() {
   const { Redis } = await import('@upstash/redis')
-  return Redis.fromEnv()
+  return new Redis({
+    url: process.env.KV_REST_API_URL!,
+    token: process.env.KV_REST_API_TOKEN!,
+  })
 }
 
 export async function logVisit(entry: Omit<VisitEntry, 'id'>) {
