@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Cormorant_Garamond, Cinzel_Decorative } from 'next/font/google'
 import './globals.css'
 import NavBar from './components/NavBar'
+import { Analytics } from '@vercel/analytics/react'
+import VisitTracker from './components/VisitTracker'
 
 const cinzelDecorative = Cinzel_Decorative({
   subsets: ['latin'],
@@ -36,10 +38,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${cinzelDecorative.variable} ${cormorant.variable} ${cormorantBody.variable}`}>
       <body className="min-h-screen flex flex-col">
         <NavBar />
+        <VisitTracker />
         <main className="flex-1">{children}</main>
         <footer className="text-center py-8 text-xs tracking-[0.2em] uppercase" style={{ color: '#2A2A2A', fontFamily: 'var(--font-cinzel), serif' }}>
           ✦ &nbsp;Arcana Garden&nbsp; ✦
         </footer>
+        <Analytics />
       </body>
     </html>
   )

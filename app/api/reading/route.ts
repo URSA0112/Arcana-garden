@@ -1,4 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk'
+import { headers } from 'next/headers'
+import { logReading } from '@/lib/logger'
 
 const client = new Anthropic()
 
@@ -105,6 +107,22 @@ function buildUserMessage(
 
 export async function POST(req: Request) {
   const { cards, spread, question, emotionalContext, zodiacSign } = await req.json()
+
+  const hdrs = await headers()
+  const rawIp =
+    hdrs.get('x-forwarded-for')?.split(',')[0]?.trim() ??
+    hdrs.get('x-real-ip') ??
+    'unknown'
+
+  await logReading({
+    timestamp: new Date().toISOString(),
+    spread: spread ?? '1',
+    question: question ?? '',
+    emotionalContext: emotionalContext ?? '',
+    zodiacSign: zodiacSign ?? '',
+    cards: (cards as Array<{ name: string }>).map((c) => c.name),
+    ip: rawIp.slice(0, 6) + '…',
+  })
 
   const userContent = buildUserMessage(
     cards,
