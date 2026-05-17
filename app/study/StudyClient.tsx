@@ -342,17 +342,6 @@ export default function StudyClient({ cards }: { cards: TarotCard[] }) {
                 >
                   {current.name}
                 </h2>
-                <div className="flex flex-wrap gap-1.5 justify-center sm:justify-start">
-                  {current.keywords.map(k => (
-                    <span
-                      key={k}
-                      className="text-[12px] px-2 py-0.5 rounded-full"
-                      style={{ backgroundColor: 'rgba(198,168,91,0.07)', color: '#7A7A7A', border: '1px solid rgba(198,168,91,0.12)' }}
-                    >
-                      {k}
-                    </span>
-                  ))}
-                </div>
               </div>
             </div>
 

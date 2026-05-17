@@ -17,6 +17,9 @@ export async function POST(req: Request) {
       'unknown'
     const userAgent = hdrs.get('user-agent') ?? 'unknown'
 
+    const botPattern = /bot|crawler|spider|googlebot|bingbot|slurp|duckduckbot|facebookexternalhit|ia_archiver/i
+    if (botPattern.test(userAgent)) return new Response(null, { status: 204 })
+
     await logVisit({
       timestamp: new Date().toISOString(),
       page: page ?? '/',
