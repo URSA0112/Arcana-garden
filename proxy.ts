@@ -4,17 +4,9 @@ import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
 export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl
-
-  // Allow login page
-  if (pathname === '/admin/login') {
-    return NextResponse.next()
-  }
-
   const token = request.cookies.get('admin_token')?.value
   const expected = process.env.ADMIN_TOKEN
 
-  // Redirect if invalid token
   if (!expected || token !== expected) {
     return NextResponse.redirect(
       new URL('/admin/login', request.url)
@@ -25,5 +17,6 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  // Protect /admin and any sub-paths except /admin/login (which is public)
+  matcher: ['/admin', '/admin/((?!login$).+)'],
 }
