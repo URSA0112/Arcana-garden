@@ -1,7 +1,5 @@
 'use client'
-
-import { TIMELINE, DECORATION_RAYS } from './data/timeline'
-import type { RayDecor } from './data/timeline'
+import { DECORATION_RAYS, TIMELINE, type RayDecor } from './data/timeline'
 import { useHistoryAnimations } from './hooks/useHistoryAnimations'
 import { TimelineEntry } from './TimelineEntry'
 
