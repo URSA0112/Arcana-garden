@@ -29,6 +29,10 @@ body {
 ::-webkit-scrollbar-thumb { background: #222222; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #C6A85B; }
 
+/* Hidden scrollbar (mobile card strip) */
+.no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
 /* Selection */
 ::selection { background: rgba(198,168,91,0.28); color: #F2F2F2; }
 
@@ -154,4 +158,14 @@ body {
   0%, 100% { transform: translateY(0)   translateX(0);   opacity: 0.3; }
   40%       { transform: translateY(-22px) translateX(10px); opacity: 0.6; }
   70%       { transform: translateY(-10px) translateX(-7px); opacity: 0.4; }
+}
+
+/* Audio waveform bars */
+@keyframes audio-bar {
+  0%, 100% { transform: scaleY(0.35); }
+  50%       { transform: scaleY(1);    }
+}
+.audio-bar {
+  animation: audio-bar 0.9s ease-in-out infinite;
+  transform-origin: bottom;
 }

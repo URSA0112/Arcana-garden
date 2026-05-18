@@ -1,6 +1,5 @@
-import tarotCards from '@/lib/tarot-data'
-import StudyClient from './StudyClient'
+import TarotStudyHero from './StudyHero'
 
 export default function StudyPage() {
-  return <StudyClient cards={tarotCards} />
+  return <TarotStudyHero />
 }

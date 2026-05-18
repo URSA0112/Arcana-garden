@@ -1,43 +1,26 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import dynamic from 'next/dynamic'
-import gsap from 'gsap'
 import { TarotCard } from '@/lib/tarot-data'
+import { useHeroAnimation } from './hooks/useHeroAnimation'
 import DailyCardDisplay from './DailyCardDisplay'
 
 const FloatingCards3D = dynamic(() => import('./FloatingCards3D'), { ssr: false })
 
 export default function HeroSection({ card }: { card: TarotCard }) {
-  const labelRef   = useRef<HTMLParagraphElement>(null)
-  const titleRef   = useRef<HTMLHeadingElement>(null)
-  const subRef     = useRef<HTMLParagraphElement>(null)
-  const dividerRef = useRef<HTMLDivElement>(null)
-  const cardRef    = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-      tl.to(labelRef.current,   { y: 0, opacity: 1, duration: 0.6 })
-        .to(titleRef.current,   { y: 0, opacity: 1, duration: 1.0 }, '-=0.35')
-        .to(subRef.current,     { y: 0, opacity: 1, duration: 0.7 }, '-=0.5')
-        .to(dividerRef.current, { opacity: 1, duration: 0.5 }, '-=0.3')
-        .to(cardRef.current,    { y: 0, opacity: 1, duration: 0.9 }, '-=0.25')
-    })
-    return () => ctx.revert()
-  }, [])
+  const { labelRef, titleRef, subRef, dividerRef, cardRef } = useHeroAnimation()
 
   return (
     <section
       className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden"
       style={{ backgroundColor: '#0A0A0A' }}
     >
-      {/* ── Layer 0: 3D floating cards canvas ── */}
+      {/* Layer 0: 3D floating cards canvas */}
       <div className="absolute inset-0 z-0">
         <FloatingCards3D />
       </div>
 
-      {/* ── Layer 1: gradient vignette ── */}
+      {/* Layer 1: gradient vignette */}
       <div
         className="absolute inset-0 z-10 pointer-events-none"
         style={{
@@ -57,7 +40,7 @@ export default function HeroSection({ card }: { card: TarotCard }) {
         }}
       />
 
-      {/* ── Layer 2: content ── */}
+      {/* Layer 2: content */}
       <div className="relative z-20 w-full max-w-2xl mx-auto px-4 sm:px-6 py-24 sm:py-32 flex flex-col items-center text-center">
 
         <p
@@ -112,6 +95,7 @@ export default function HeroSection({ card }: { card: TarotCard }) {
         <div ref={cardRef} className="w-full" style={{ opacity: 0, transform: 'translateY(32px)' }}>
           <DailyCardDisplay card={card} />
         </div>
+
       </div>
     </section>
   )

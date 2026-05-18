@@ -32,11 +32,11 @@ export const CARD_W  = 68
 export const CARD_H  = Math.round(CARD_W * 1.75)
 export const SCALE   = CARD_W / 120
 
-export const BG_URL = 'https://res.cloudinary.com/dt43fy6cr/image/upload/v1778685421/moonsun-cropforme.com_1_pi39hi.jpg'
+export const BG_URL = 'https://res.cloudinary.com/dt43fy6cr/image/upload/v1779094555/4529ddad-c37d-4e17-aa8a-0dc93b0012d3_qqhqrc.png'
 
 export const BTN: React.CSSProperties = {
-  background: 'linear-gradient(135deg, #4a6632 0%, #628141 50%, #4a6632 100%)',
-  color: '#EBD5AB',
+  background: 'linear-gradient(135deg, rgba(198,168,91,0.85) 0%, #C6A85B 50%, rgba(198,168,91,0.85) 100%)',
+  color: '#0A0A0A',
   fontFamily: 'var(--font-cinzel), serif',
   fontSize: '0.75rem',
   letterSpacing: '0.12em',

@@ -3,16 +3,18 @@
 import { useState, useCallback } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { TarotCard } from '@/lib/tarot-data'
+import { prependJournalEntry } from '@/lib/storage'
+import type { JournalEntry } from '@/types/journal'
 
 import {
   Spread, Phase, SelectedCard, SlotArray, ParsedReading,
   SPREAD_LABELS, BG_URL,
 } from './reading-types'
 import { strongShuffle, parseReading, buildFallbackReading, playSound } from './reading-utils'
-import { ReadingIntro }    from './components/ReadingIntro'
-import { CardSelecting }   from './components/CardSelecting'
-import { ReadingContext }  from './components/ReadingContext'
-import { ReadingPhase }    from './components/ReadingPhase'
+import { ReadingIntro }   from './components/ReadingIntro'
+import { CardSelecting }  from './components/CardSelecting'
+import { ReadingContext } from './components/ReadingContext'
+import { ReadingPhase }   from './components/ReadingPhase'
 
 export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
   const [phase, setPhase]   = useState<Phase>('intro')
@@ -136,8 +138,7 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
   const saveToJournal = () => {
     const readingCards = slots.filter((s): s is SelectedCard => s !== null)
     if (!readingCards.length) return
-    const readings: object[] = JSON.parse(localStorage.getItem('arcana-journal') ?? '[]')
-    readings.unshift({
+    const entry: JournalEntry = {
       id: Date.now(),
       date: new Date().toISOString(),
       spread,
@@ -152,10 +153,9 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
       })),
       summary: parsedReading.synthesis,
       sections: parsedReading,
-      aiReading,
       note,
-    })
-    localStorage.setItem('arcana-journal', JSON.stringify(readings))
+    }
+    prependJournalEntry(entry)
     setSaved(true)
   }
 
@@ -213,7 +213,6 @@ export default function ReadingClient({ cards }: { cards: TarotCard[] }) {
           {phase === 'context' && (
             <ReadingContext
               key="context"
-              spread={spread}
               selectedCards={selectedCards}
               requiredCount={requiredCount}
               question={question}

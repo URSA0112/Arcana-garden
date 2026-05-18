@@ -4,14 +4,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-
-const links = [
-  { href: '/', label: 'Home' },
-  { href: '/library', label: 'Library' },
-  { href: '/reading', label: 'Reading' },
-  { href: '/study', label: 'Study' },
-  { href: '/journal', label: 'Journal' },
-]
+import { NAV_LINKS as links } from '@/app/constants/navigation'
 
 export default function NavBar() {
   const pathname = usePathname()

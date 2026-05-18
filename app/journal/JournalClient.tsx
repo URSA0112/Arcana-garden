@@ -4,59 +4,59 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import { getCardBySlug } from '@/lib/tarot-data'
+import { loadJournalEntries, saveJournalEntries } from '@/lib/storage'
+import type { JournalEntry } from '@/types/journal'
 import CardArt from '../components/CardArt'
-
-interface DrawnEntry {
-  id: string
-  name: string
-  reversed: boolean
-  label?: string
-}
-
-interface JournalEntry {
-  id: number
-  date: string
-  spread: string
-  question?: string
-  emotionalContext?: string
-  zodiacSign?: string
-  cards: DrawnEntry[]
-  summary?: string          // synthesis paragraph — the key saved text
-  sections?: {
-    cards: Record<string, string>
-    advice: string
-    synthesis: string
-  }
-  note: string
-}
 
 export default function JournalClient() {
   const [entries, setEntries]   = useState<JournalEntry[]>([])
-  const [expanded, setExpanded] = useState<number | null>(null)
+  const [expandedId, setExpandedId] = useState<number | null>(null)
 
   useEffect(() => {
-    const raw = localStorage.getItem('arcana-journal')
-    if (raw) setEntries(JSON.parse(raw))
+    setEntries(loadJournalEntries())
   }, [])
 
   const deleteEntry = (id: number) => {
     const updated = entries.filter((e) => e.id !== id)
     setEntries(updated)
-    localStorage.setItem('arcana-journal', JSON.stringify(updated))
-    if (expanded === id) setExpanded(null)
+    saveJournalEntries(updated)
+    if (expandedId === id) setExpandedId(null)
   }
 
   const updateNote = (id: number, note: string) => {
     const updated = entries.map((e) => (e.id === id ? { ...e, note } : e))
     setEntries(updated)
-    localStorage.setItem('arcana-journal', JSON.stringify(updated))
+    saveJournalEntries(updated)
+  }
+
+  const toggleExpanded = (id: number) => {
+    setExpandedId((current) => (current === id ? null : id))
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0A0A0A' }}>
+    <>
+      {/* Background image */}
+      <div
+        aria-hidden
+        style={{
+          position: 'fixed', inset: 0, zIndex: 0,
+          backgroundImage: 'url(https://res.cloudinary.com/dt43fy6cr/image/upload/v1779095508/bd8419a5-0236-4f92-95d5-18da9ddb3d0e_cdo9gr.png)',
+          backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
+          opacity: 0.18, pointerEvents: 'none',
+        }}
+      />
+      {/* Vignette */}
+      <div
+        aria-hidden
+        style={{
+          position: 'fixed', inset: 0, zIndex: 1,
+          background: 'radial-gradient(ellipse 85% 80% at 50% 35%, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.75) 65%, rgba(10,10,10,0.95) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
       <div className="max-w-3xl mx-auto px-4 py-12">
 
-        {/* Header */}
         <div className="text-center mb-10">
           <p className="text-xs tracking-[0.3em] uppercase mb-3" style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}>
             Your Readings
@@ -90,10 +90,9 @@ export default function JournalClient() {
         <div className="space-y-3">
           <AnimatePresence>
             {entries.map((entry) => {
-              const isOpen      = expanded === entry.id
+              const isOpen      = expandedId === entry.id
               const date        = new Date(entry.date)
               const spreadLabel = entry.spread === '1' ? 'One Card' : 'Three Cards — Past · Present · Future'
-              // resolve the synthesis: prefer top-level summary, fall back to sections
               const synthesis   = entry.summary || entry.sections?.synthesis || ''
 
               return (
@@ -111,14 +110,13 @@ export default function JournalClient() {
                     transition: 'border-color 0.2s ease',
                   }}
                 >
-                  {/* ── Collapsed header ── */}
+                  {/* Collapsed header */}
                   <button
                     type="button"
                     className="w-full flex items-start justify-between px-4 sm:px-6 py-4 text-left gap-4"
-                    onClick={() => setExpanded(isOpen ? null : entry.id)}
+                    onClick={() => toggleExpanded(entry.id)}
                   >
                     <div className="min-w-0 flex-1">
-                      {/* Question preview if present */}
                       {entry.question ? (
                         <p className="font-light mb-0.5 truncate" style={{ color: '#F2F2F2', fontFamily: 'var(--font-cormorant), cursive', fontSize: '1.18rem', fontStyle: 'italic' }}>
                           "{entry.question.length > 60 ? entry.question.slice(0, 60) + '…' : entry.question}"
@@ -133,12 +131,12 @@ export default function JournalClient() {
                           {date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
                         </p>
                         {entry.question && (
-                          <span style={{ color: 'rgba(198,168,91,0.3)', fontSize: '0.5rem' }}>·</span>
-                        )}
-                        {entry.question && (
-                          <p className="text-xs" style={{ color: 'rgba(198,168,91,0.5)', fontFamily: 'var(--font-cinzel), serif', fontSize: '0.6rem' }}>
-                            {spreadLabel}
-                          </p>
+                          <>
+                            <span style={{ color: 'rgba(198,168,91,0.3)', fontSize: '0.5rem' }}>·</span>
+                            <p className="text-xs" style={{ color: 'rgba(198,168,91,0.5)', fontFamily: 'var(--font-cinzel), serif', fontSize: '0.6rem' }}>
+                              {spreadLabel}
+                            </p>
+                          </>
                         )}
                       </div>
                     </div>
@@ -150,11 +148,16 @@ export default function JournalClient() {
                           return card ? <span key={c.id} className="text-base">{card.symbol}</span> : null
                         })}
                       </div>
-                      <span className="text-xs transition-transform duration-200" style={{ color: '#C6A85B', display: 'inline-block', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
+                      <span
+                        className="text-xs transition-transform duration-200"
+                        style={{ color: '#C6A85B', display: 'inline-block', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+                      >
+                        ▼
+                      </span>
                     </div>
                   </button>
 
-                  {/* ── Expanded body ── */}
+                  {/* Expanded body */}
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
@@ -166,7 +169,7 @@ export default function JournalClient() {
                       >
                         <div className="px-4 sm:px-6 pb-6 border-t" style={{ borderColor: 'rgba(198,168,91,0.1)' }}>
 
-                          {/* Context — question + feeling */}
+                          {/* Context */}
                           {(entry.question || entry.emotionalContext) && (
                             <div className="pt-5 pb-4 mb-1 flex flex-col gap-1.5">
                               {entry.question && (
@@ -208,15 +211,15 @@ export default function JournalClient() {
                             })}
                           </div>
 
-                          {/* Reading result — synthesis */}
+                          {/* Synthesis */}
                           {synthesis && (
-                            <div className="mt-5 mb-5 rounded-xl px-5 py-4" style={{ backgroundColor: 'rgba(18,28,22,0.65)', border: '1px solid rgba(198,168,91,0.13)' }}>
+                            <div className="mt-5 mb-5 rounded-xl px-5 py-4" style={{ backgroundColor: 'rgba(14,14,14,0.7)', border: '1px solid rgba(198,168,91,0.13)' }}>
                               <p className="text-[12px] tracking-[0.25em] uppercase mb-3" style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}>
                                 ✦ The Reading
                               </p>
                               <div className="space-y-3">
                                 {synthesis.split('\n\n').filter(Boolean).map((para, pi) => (
-                                  <p key={pi} style={{ color: pi === 0 ? '#D8E8C0' : '#A8BF90', fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: '1.05rem', lineHeight: '1.85', fontStyle: pi > 0 ? 'italic' : 'normal' }}>
+                                  <p key={pi} style={{ color: pi === 0 ? '#EBD5AB' : '#D4C5A0', fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: '1.05rem', lineHeight: '1.85', fontStyle: pi > 0 ? 'italic' : 'normal' }}>
                                     {para}
                                   </p>
                                 ))}
@@ -261,6 +264,7 @@ export default function JournalClient() {
         </div>
 
       </div>
-    </div>
+      </div>
+    </>
   )
 }

@@ -41,7 +41,27 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
   }, [cards, filter, search])
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: '#0A0A0A' }}>
+    <>
+      {/* Background image */}
+      <div
+        aria-hidden
+        style={{
+          position: 'fixed', inset: 0, zIndex: 0,
+          backgroundImage: 'url(https://res.cloudinary.com/dt43fy6cr/image/upload/v1778685421/moonsun-cropforme.com_1_pi39hi.jpg)',
+          backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
+          opacity: 0.18, pointerEvents: 'none',
+        }}
+      />
+      {/* Vignette */}
+      <div
+        aria-hidden
+        style={{
+          position: 'fixed', inset: 0, zIndex: 1,
+          background: 'radial-gradient(ellipse 85% 80% at 50% 35%, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.75) 65%, rgba(10,10,10,0.95) 100%)',
+          pointerEvents: 'none',
+        }}
+      />
+      <div style={{ position: 'relative', zIndex: 2, minHeight: '100vh' }}>
     <div className="max-w-6xl mx-auto px-4 py-12">
       {/* Header */}
       <div className="mb-10 text-center">
@@ -157,5 +177,6 @@ export default function LibraryClient({ cards }: { cards: TarotCard[] }) {
       )}
     </div>
     </div>
+    </>
   )
 }

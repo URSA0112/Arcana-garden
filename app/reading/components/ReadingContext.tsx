@@ -2,10 +2,9 @@
 
 import { motion } from 'framer-motion'
 import CardBack from '../../components/CardBack'
-import { Spread, SelectedCard, ZODIAC_SIGNS, BTN } from '../reading-types'
+import { SelectedCard, ZODIAC_SIGNS, BTN } from '../reading-types'
 
 interface ReadingContextProps {
-  spread: Spread
   selectedCards: SelectedCard[]
   requiredCount: number
   question: string
@@ -19,8 +18,8 @@ interface ReadingContextProps {
 }
 
 const INPUT: React.CSSProperties = {
-  backgroundColor: 'rgba(16,23,20,0.7)',
-  border: '1px solid rgba(98,129,65,0.2)',
+  backgroundColor: 'rgba(10,10,10,0.7)',
+  border: '1px solid rgba(198,168,91,0.15)',
   color: '#EBD5AB',
   fontFamily: 'var(--font-cormorant), Georgia, serif',
   fontSize: '1.05rem',
@@ -52,7 +51,7 @@ export function ReadingContext({
       <div className="text-center mb-10">
         <p
           className="text-xs tracking-[0.35em] uppercase mb-4"
-          style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+          style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
         >
           {requiredCount === 1 ? 'One Card Chosen' : 'Three Cards Chosen'}
         </p>
@@ -65,7 +64,7 @@ export function ReadingContext({
         <p
           style={{
             fontFamily: 'var(--font-cormorant), Georgia, serif',
-            color: '#8BAE66',
+            color: '#B3B3B3',
             fontStyle: 'italic',
             fontSize: '1.1rem',
           }}
@@ -86,7 +85,7 @@ export function ReadingContext({
           >
             <span
               className="text-[12px] tracking-[0.2em] uppercase"
-              style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+              style={{ color: 'rgba(198,168,91,0.65)', fontFamily: 'var(--font-cinzel), serif' }}
             >
               {s.label}
             </span>
@@ -130,11 +129,11 @@ export function ReadingContext({
               fontSize: '0.75rem',
               letterSpacing: '0.05em',
               fontFamily: 'var(--font-cinzel), serif',
-              color: zodiacSign ? '#EBD5AB' : '#4a5e40',
+              color: zodiacSign ? '#EBD5AB' : '#555',
             }}
           >
             {ZODIAC_SIGNS.map((sign) => (
-              <option key={sign} value={sign} style={{ backgroundColor: '#0d1a14' }}>
+              <option key={sign} value={sign} style={{ backgroundColor: '#0A0A0A' }}>
                 {sign || 'Your Sign (optional)'}
               </option>
             ))}
@@ -148,18 +147,18 @@ export function ReadingContext({
         animate={{ opacity: 1 }}
         transition={{ delay: 0.48 }}
         className="rounded-xl px-5 py-4 mb-6"
-        style={{ backgroundColor: 'rgba(18,28,22,0.7)', border: '1px solid rgba(98,129,65,0.15)' }}
+        style={{ backgroundColor: 'rgba(14,14,14,0.7)', border: '1px solid rgba(198,168,91,0.12)' }}
       >
         <p
           className="text-xs tracking-[0.12em] uppercase mb-1"
-          style={{ color: '#4a5e40', fontFamily: 'var(--font-cinzel), serif' }}
+          style={{ color: 'rgba(198,168,91,0.45)', fontFamily: 'var(--font-cinzel), serif' }}
         >
           About to begin
         </p>
         <p
           style={{
             fontFamily: 'var(--font-cormorant), Georgia, serif',
-            color: '#8BAE66',
+            color: '#B3B3B3',
             fontSize: '1rem',
           }}
         >
@@ -181,7 +180,7 @@ export function ReadingContext({
           type="button"
           onClick={onBack}
           className="text-sm tracking-[0.1em] uppercase opacity-45 hover:opacity-80 transition-opacity"
-          style={{ color: '#8BAE66', fontFamily: 'var(--font-cinzel), serif' }}
+          style={{ color: 'rgba(198,168,91,0.7)', fontFamily: 'var(--font-cinzel), serif' }}
         >
           ← Change Cards
         </button>

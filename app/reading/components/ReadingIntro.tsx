@@ -22,7 +22,7 @@ const SPREAD_OPTIONS = [
     icon: '✦',
     title: 'Three Cards',
     subtitle: 'Past · Present · Future',
-    desc: "A fuller arc — where you’ve been, where you stand, what’s ahead.",
+    desc: "A fuller arc — where you've been, where you stand, what's ahead.",
   },
 ]
 
@@ -43,7 +43,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
           fontSize: '0.6rem',
           letterSpacing: '0.42em',
           textTransform: 'uppercase',
-          color: '#3d5430',
+          color: 'rgba(198,168,91,0.55)',
           marginBottom: '1.75rem',
         }}
       >
@@ -68,7 +68,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
 
       {/* Ornament */}
       <div className="ornament" style={{ width: '100%', maxWidth: 280, margin: '1.25rem 0' }}>
-        <span style={{ color: 'rgba(98,129,65,0.45)', fontSize: '0.42rem' }}>✦</span>
+        <span style={{ color: 'rgba(198,168,91,0.35)', fontSize: '0.42rem' }}>✦</span>
       </div>
 
       {/* Tagline */}
@@ -77,7 +77,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
         style={{
           fontFamily: 'var(--font-cormorant), Georgia, serif',
           fontSize: '1.15rem',
-          color: '#6a9050',
+          color: '#B3B3B3',
           fontStyle: 'italic',
           lineHeight: 1.65,
           marginBottom: '2.75rem',
@@ -94,7 +94,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
           fontSize: '0.58rem',
           letterSpacing: '0.26em',
           textTransform: 'uppercase',
-          color: '#3a5030',
+          color: 'rgba(198,168,91,0.5)',
           marginBottom: '0.9rem',
         }}
       >
@@ -117,13 +117,13 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
                 padding: '1.5rem 1rem 1.35rem',
                 borderRadius: 14,
                 border: active
-                  ? '1px solid rgba(139,174,102,0.42)'
-                  : '1px solid rgba(98,129,65,0.11)',
+                  ? '1px solid rgba(198,168,91,0.45)'
+                  : '1px solid rgba(198,168,91,0.1)',
                 background: active
-                  ? 'rgba(74,102,50,0.13)'
-                  : 'rgba(14,22,14,0.5)',
+                  ? 'rgba(198,168,91,0.08)'
+                  : 'rgba(14,14,14,0.55)',
                 boxShadow: active
-                  ? '0 0 32px rgba(98,129,65,0.1), inset 0 1px 0 rgba(139,174,102,0.07)'
+                  ? '0 0 32px rgba(198,168,91,0.1), inset 0 1px 0 rgba(198,168,91,0.06)'
                   : 'none',
                 textAlign: 'center',
                 cursor: 'pointer',
@@ -134,7 +134,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
                 style={{
                   fontSize: '1.45rem',
                   marginBottom: '0.7rem',
-                  color: active ? '#8BAE66' : '#3a5030',
+                  color: active ? '#C6A85B' : 'rgba(198,168,91,0.25)',
                   transition: 'color 0.25s',
                 }}
               >
@@ -146,7 +146,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
                   fontSize: '0.6rem',
                   letterSpacing: '0.18em',
                   textTransform: 'uppercase',
-                  color: active ? '#EBD5AB' : '#4d6840',
+                  color: active ? '#EBD5AB' : '#555',
                   marginBottom: '0.35rem',
                   transition: 'color 0.25s',
                 }}
@@ -157,7 +157,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
                 style={{
                   fontFamily: 'var(--font-cormorant), serif',
                   fontSize: '0.9rem',
-                  color: active ? '#8BAE66' : '#3f5438',
+                  color: active ? '#C6A85B' : '#444',
                   fontStyle: 'italic',
                   marginBottom: '0.6rem',
                   transition: 'color 0.25s',
@@ -169,7 +169,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
                 style={{
                   fontFamily: 'var(--font-cormorant), serif',
                   fontSize: '0.85rem',
-                  color: '#2e3e28',
+                  color: '#555',
                   lineHeight: 1.6,
                 }}
               >
@@ -197,7 +197,7 @@ export function ReadingIntro({ spread, setSpread, onBegin }: ReadingIntroProps) 
           marginTop: '2rem',
           fontFamily: 'var(--font-cormorant), serif',
           fontSize: '0.82rem',
-          color: '#253220',
+          color: '#444',
           fontStyle: 'italic',
           textAlign: 'center',
         }}

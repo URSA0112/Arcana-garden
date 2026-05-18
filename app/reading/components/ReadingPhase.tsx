@@ -17,7 +17,7 @@ interface CardSectionProps {
 }
 
 function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }: CardSectionProps) {
-  const cardText  = parsedReading.cards[sc.label] ?? ''
+  const cardText   = parsedReading.cards[sc.label] ?? ''
   const showAdvice = sc.label === 'Future' && !!parsedReading.advice
 
   return (
@@ -31,7 +31,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
         <div className="flex flex-col items-center sm:items-start gap-3 flex-shrink-0">
           <span
             className="text-[12px] tracking-[0.3em] uppercase"
-            style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+            style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
           >
             {sc.label}
           </span>
@@ -39,7 +39,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
           <div
             className="card-flip-container"
             style={{
-              filter: isRevealed ? 'drop-shadow(0 0 18px rgba(98,129,65,0.35))' : 'none',
+              filter: isRevealed ? 'drop-shadow(0 0 18px rgba(198,168,91,0.35))' : 'none',
               transition: 'filter 0.6s ease',
             }}
           >
@@ -81,9 +81,9 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                   <span
                     className="text-[12px] px-2 py-0.5 rounded-full tracking-wide"
                     style={{
-                      backgroundColor: 'rgba(34,48,40,0.8)',
-                      border: '1px solid rgba(98,129,65,0.25)',
-                      color: '#7DA55A',
+                      backgroundColor: 'rgba(14,14,14,0.8)',
+                      border: '1px solid rgba(198,168,91,0.25)',
+                      color: '#C6A85B',
                     }}
                   >
                     Reversed
@@ -105,7 +105,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                 exit={{ opacity: 0 }}
                 className="pt-8"
                 style={{
-                  color: '#2e3e28',
+                  color: '#444',
                   fontFamily: 'var(--font-cormorant), serif',
                   fontStyle: 'italic',
                   fontSize: '0.9rem',
@@ -126,7 +126,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                     <motion.div
                       key={j}
                       className="w-1.5 h-1.5 rounded-full"
-                      style={{ backgroundColor: '#628141' }}
+                      style={{ backgroundColor: '#C6A85B' }}
                       animate={{ opacity: [0.2, 1, 0.2], scale: [0.8, 1, 0.8] }}
                       transition={{ duration: 1.4, repeat: Infinity, delay: j * 0.2 }}
                     />
@@ -134,7 +134,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                 </div>
                 <span
                   style={{
-                    color: '#4a5e40',
+                    color: '#555',
                     fontFamily: 'var(--font-cormorant), serif',
                     fontStyle: 'italic',
                     fontSize: '0.9rem',
@@ -155,7 +155,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                   <p
                     key={pi}
                     style={{
-                      color: pi === 0 ? '#DDE8C4' : '#C8DCAA',
+                      color: pi === 0 ? '#EBD5AB' : '#D4C5A0',
                       fontFamily: 'var(--font-cormorant), Georgia, serif',
                       fontSize: '1.08rem',
                       lineHeight: '1.85',
@@ -174,13 +174,13 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                     transition={{ delay: 0.3 }}
                     className="rounded-xl px-5 py-4 mt-2"
                     style={{
-                      backgroundColor: 'rgba(26,40,30,0.75)',
-                      border: '1px solid rgba(98,129,65,0.28)',
+                      backgroundColor: 'rgba(14,14,14,0.7)',
+                      border: '1px solid rgba(198,168,91,0.2)',
                     }}
                   >
                     <p
                       className="text-[12px] tracking-[0.22em] uppercase mb-2"
-                      style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+                      style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
                     >
                       ✦ What to hold
                     </p>
@@ -188,7 +188,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                       <p
                         key={pi}
                         style={{
-                          color: '#A8C07A',
+                          color: '#B3B3B3',
                           fontFamily: 'var(--font-cormorant), Georgia, serif',
                           fontSize: '1.05rem',
                           lineHeight: '1.8',
@@ -205,7 +205,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
                   <motion.span
                     animate={{ opacity: [1, 0.1] }}
                     transition={{ duration: 0.55, repeat: Infinity, repeatType: 'reverse' }}
-                    style={{ color: '#628141', fontSize: '1rem' }}
+                    style={{ color: '#C6A85B', fontSize: '1rem' }}
                   >
                     ▋
                   </motion.span>
@@ -218,7 +218,7 @@ function CardSection({ sc, i, isRevealed, parsedReading, aiLoading, totalCards }
 
       {i < totalCards - 1 && (
         <div className="ornament mt-10" style={{ opacity: 0.35 }}>
-          <span style={{ color: '#628141', fontSize: '0.45rem' }}>✦</span>
+          <span style={{ color: 'rgba(198,168,91,0.5)', fontSize: '0.45rem' }}>✦</span>
         </div>
       )}
     </motion.div>
@@ -238,19 +238,19 @@ function SynthesisSection({ synthesis }: { synthesis: string }) {
           className="mb-10"
         >
           <div className="ornament mb-6" style={{ opacity: 0.4 }}>
-            <span style={{ color: '#628141', fontSize: '0.5rem' }}>✦</span>
+            <span style={{ color: 'rgba(198,168,91,0.5)', fontSize: '0.5rem' }}>✦</span>
           </div>
           <div
             className="rounded-2xl p-7 border"
             style={{
-              borderColor: 'rgba(98,129,65,0.2)',
-              backgroundColor: 'rgba(26,36,32,0.65)',
+              borderColor: 'rgba(198,168,91,0.15)',
+              backgroundColor: 'rgba(14,14,14,0.7)',
               backdropFilter: 'blur(10px)',
             }}
           >
             <p
               className="text-[12px] tracking-[0.3em] uppercase mb-5"
-              style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+              style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
             >
               The Reading
             </p>
@@ -259,7 +259,7 @@ function SynthesisSection({ synthesis }: { synthesis: string }) {
                 <p
                   key={pi}
                   style={{
-                    color: pi === 0 ? '#C8DCAA' : '#A8C07A',
+                    color: pi === 0 ? '#EBD5AB' : '#D4C5A0',
                     fontFamily: 'var(--font-cormorant), Georgia, serif',
                     fontSize: '1.1rem',
                     lineHeight: '1.9',
@@ -300,16 +300,16 @@ function JournalSection({ question, emotionalContext, note, setNote, saved, onSa
       <div
         className="rounded-2xl p-6 border"
         style={{
-          borderColor: 'rgba(98,129,65,0.22)',
-          backgroundColor: 'rgba(26,36,32,0.65)',
+          borderColor: 'rgba(198,168,91,0.15)',
+          backgroundColor: 'rgba(14,14,14,0.7)',
           backdropFilter: 'blur(10px)',
         }}
       >
         {(question || emotionalContext) && (
-          <div className="mb-5 pb-5 border-b" style={{ borderColor: 'rgba(98,129,65,0.12)' }}>
+          <div className="mb-5 pb-5 border-b" style={{ borderColor: 'rgba(198,168,91,0.08)' }}>
             <p
               className="text-[12px] tracking-[0.2em] uppercase mb-3"
-              style={{ color: '#4a5e40', fontFamily: 'var(--font-cinzel), serif' }}
+              style={{ color: 'rgba(198,168,91,0.45)', fontFamily: 'var(--font-cinzel), serif' }}
             >
               Your context
             </p>
@@ -317,25 +317,25 @@ function JournalSection({ question, emotionalContext, note, setNote, saved, onSa
               <p
                 className="mb-1.5"
                 style={{
-                  color: '#8BAE66',
+                  color: '#B3B3B3',
                   fontFamily: 'var(--font-cormorant), Georgia, serif',
                   fontSize: '0.95rem',
                   fontStyle: 'italic',
                 }}
               >
-                <span style={{ color: '#4a5e40' }}>Situation: </span>{question}
+                <span style={{ color: 'rgba(198,168,91,0.4)' }}>Situation: </span>{question}
               </p>
             )}
             {emotionalContext && (
               <p
                 style={{
-                  color: '#8BAE66',
+                  color: '#B3B3B3',
                   fontFamily: 'var(--font-cormorant), Georgia, serif',
                   fontSize: '0.95rem',
                   fontStyle: 'italic',
                 }}
               >
-                <span style={{ color: '#4a5e40' }}>Feeling: </span>{emotionalContext}
+                <span style={{ color: 'rgba(198,168,91,0.4)' }}>Feeling: </span>{emotionalContext}
               </p>
             )}
           </div>
@@ -343,7 +343,7 @@ function JournalSection({ question, emotionalContext, note, setNote, saved, onSa
 
         <label
           className="block text-xs tracking-[0.15em] uppercase mb-3"
-          style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+          style={{ color: 'rgba(198,168,91,0.65)', fontFamily: 'var(--font-cinzel), serif' }}
         >
           Journal Note
         </label>
@@ -354,8 +354,8 @@ function JournalSection({ question, emotionalContext, note, setNote, saved, onSa
           placeholder="What does this reading reveal to you?"
           className="w-full rounded-xl px-4 py-3 resize-none outline-none"
           style={{
-            backgroundColor: 'rgba(16,23,20,0.7)',
-            border: '1px solid rgba(98,129,65,0.2)',
+            backgroundColor: 'rgba(10,10,10,0.7)',
+            border: '1px solid rgba(198,168,91,0.15)',
             color: '#EBD5AB',
             fontFamily: 'var(--font-cormorant), Georgia, serif',
             fontSize: '1rem',
@@ -367,7 +367,7 @@ function JournalSection({ question, emotionalContext, note, setNote, saved, onSa
             type="button"
             onClick={onReset}
             className="text-xs tracking-[0.1em] uppercase opacity-45 hover:opacity-75 transition-opacity"
-            style={{ color: '#8BAE66', fontFamily: 'var(--font-cinzel), serif' }}
+            style={{ color: 'rgba(198,168,91,0.6)', fontFamily: 'var(--font-cinzel), serif' }}
           >
             ↺ New Reading
           </button>
@@ -377,10 +377,10 @@ function JournalSection({ question, emotionalContext, note, setNote, saved, onSa
             disabled={saved}
             className="px-5 py-2 rounded-xl text-xs transition-all hover:scale-105 disabled:opacity-60 tracking-[0.08em] uppercase"
             style={{
-              backgroundColor: saved ? 'rgba(98,129,65,0.15)' : '#628141',
-              color: '#EBD5AB',
+              backgroundColor: saved ? 'rgba(198,168,91,0.1)' : '#C6A85B',
+              color: saved ? '#C6A85B' : '#0A0A0A',
               fontFamily: 'var(--font-cinzel), serif',
-              border: saved ? '1px solid rgba(98,129,65,0.3)' : 'none',
+              border: saved ? '1px solid rgba(198,168,91,0.25)' : 'none',
             }}
           >
             {saved ? '✓  Saved to Journal' : 'Save to Journal'}
@@ -437,7 +437,7 @@ export function ReadingPhase({
       <div className="text-center mb-12">
         <p
           className="text-xs tracking-[0.35em] uppercase mb-3"
-          style={{ color: '#628141', fontFamily: 'var(--font-cinzel), serif' }}
+          style={{ color: '#C6A85B', fontFamily: 'var(--font-cinzel), serif' }}
         >
           Tarot Reading
         </p>
@@ -451,7 +451,7 @@ export function ReadingPhase({
           <p
             className="text-xs mt-2"
             style={{
-              color: '#4a5e40',
+              color: '#555',
               fontFamily: 'var(--font-cormorant), serif',
               fontStyle: 'italic',
             }}
