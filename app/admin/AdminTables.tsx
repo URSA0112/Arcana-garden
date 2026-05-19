@@ -1,6 +1,6 @@
 'use client'
 
-import { VisitEntry, ReadingEntry } from '@/lib/logger'
+import { VisitEntry, ReadingEntry, FeedbackEntry } from '@/lib/logger'
 
 function parseBrowser(ua: string): string {
   if (ua.includes('Edg')) return 'Edge'
@@ -107,6 +107,46 @@ export function VisitsTable({ visits }: { visits: VisitEntry[] }) {
                 }}
               >
                 {v.referrer || '—'}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+export function FeedbackTable({ feedback }: { feedback: FeedbackEntry[] }) {
+  if (feedback.length === 0)
+    return <p style={{ color: '#7A7A7A', fontSize: '0.85rem' }}>No feedback submitted yet.</p>
+
+  return (
+    <div
+      style={{
+        background: 'rgba(20,20,20,0.55)',
+        border: '1px solid rgba(198,168,91,0.12)',
+        borderRadius: 10,
+        overflow: 'auto',
+      }}
+    >
+      <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <thead>
+          <tr>
+            <th style={thCell}>Time</th>
+            <th style={thCell}>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          {feedback.map((f) => (
+            <tr
+              key={f.id}
+              style={{ transition: 'background 0.15s' }}
+              onMouseOver={hoverOn}
+              onMouseOut={hoverOff}
+            >
+              <td style={{ ...tdMono, whiteSpace: 'nowrap' }}>{fmtTime(f.timestamp)}</td>
+              <td style={{ ...tdCell, color: '#F2F2F2', fontFamily: 'var(--font-cormorant), Georgia, serif', fontSize: '0.9rem' }}>
+                {f.message}
               </td>
             </tr>
           ))}

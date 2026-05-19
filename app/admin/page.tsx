@@ -1,5 +1,5 @@
 import { getLogs } from '@/lib/logger'
-import { VisitsTable, ReadingsTable } from './AdminTables'
+import { VisitsTable, ReadingsTable, FeedbackTable } from './AdminTables'
 
 export const dynamic = 'force-dynamic'
 
@@ -64,6 +64,7 @@ export default async function AdminPage() {
   const readingsToday = logs.readings.filter((r) => isToday(r.timestamp)).length
   const recentVisits = logs.visits.slice(0, 50)
   const recentReadings = logs.readings.slice(0, 30)
+  const recentFeedback = logs.feedback.slice(0, 100)
 
   return (
     <div
@@ -132,7 +133,7 @@ export default async function AdminPage() {
       </section>
 
       {/* Readings table */}
-      <section>
+      <section style={{ marginBottom: '3rem' }}>
         <h2
           style={{
             fontSize: '0.7rem',
@@ -148,6 +149,25 @@ export default async function AdminPage() {
         </h2>
 
         <ReadingsTable readings={recentReadings} />
+      </section>
+
+      {/* Feedback table */}
+      <section>
+        <h2
+          style={{
+            fontSize: '0.7rem',
+            letterSpacing: '0.2em',
+            textTransform: 'uppercase',
+            color: '#C6A85B',
+            fontFamily: 'var(--font-cinzel), Georgia, serif',
+            fontWeight: 400,
+            marginBottom: '1rem',
+          }}
+        >
+          ✦ &nbsp; Feedback ({recentFeedback.length})
+        </h2>
+
+        <FeedbackTable feedback={recentFeedback} />
       </section>
     </div>
   )
