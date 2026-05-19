@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { getMoonPhase, getZodiacSign, ELEMENT_COLOR } from '@/lib/astronomy'
 import { NAV_LINKS } from '@/app/constants/navigation'
@@ -130,6 +130,25 @@ export default function Footer() {
   const [zodiac,  setZodiac]  = useState<ReturnType<typeof getZodiacSign> | null>(null)
   const [dateStr, setDateStr] = useState('')
   const { playing, loading, activeId, toggle, selectTrack } = useAudio()
+  const [feedbackText,   setFeedbackText]   = useState('')
+  const [feedbackStatus, setFeedbackStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const textareaRef = useRef<HTMLTextAreaElement>(null)
+
+  async function submitFeedback() {
+    const msg = feedbackText.trim()
+    if (!msg || feedbackStatus === 'sending') return
+    setFeedbackStatus('sending')
+    try {
+      const res = await fetch('/api/feedback', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: msg }),
+      })
+      setFeedbackStatus(res.ok ? 'sent' : 'error')
+    } catch {
+      setFeedbackStatus('error')
+    }
+  }
 
   useEffect(() => {
     const now = new Date()
@@ -147,13 +166,13 @@ export default function Footer() {
         borderTop: '1px solid rgba(198,168,91,0.1)',
       }}
     >
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-12">
+      <div className="max-w-6xl mx-auto px-5 sm:px-8 py-8 sm:py-12">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-4 gap-10 sm:gap-6 mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-6 sm:mb-10">
 
           {/* Brand */}
-          <div>
+          <div className="col-span-2 sm:col-span-1">
             <p
               className="text-xs tracking-[0.35em] uppercase mb-2"
               style={{ color: 'rgba(198,168,91,0.5)', fontFamily: 'var(--font-cinzel), serif' }}
@@ -260,6 +279,68 @@ export default function Footer() {
             />
           </div>
 
+        </div>
+
+        {/* Feedback strip */}
+        <div
+          className="rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8"
+          style={{ border: '1px solid rgba(198,168,91,0.1)', backgroundColor: 'rgba(14,14,14,0.6)' }}
+        >
+          <p
+            className="text-[10px] tracking-[0.3em] uppercase mb-3"
+            style={{ color: 'rgba(198,168,91,0.4)', fontFamily: 'var(--font-cinzel), serif' }}
+          >
+            Share Feedback
+          </p>
+
+          {feedbackStatus === 'sent' ? (
+            <p
+              className="text-sm"
+              style={{ color: 'rgba(198,168,91,0.7)', fontFamily: 'var(--font-cormorant), serif', fontStyle: 'italic' }}
+            >
+              Thank you — your words have been received. ✦
+            </p>
+          ) : (
+            <div className="flex flex-col sm:flex-row gap-2">
+              <textarea
+                ref={textareaRef}
+                value={feedbackText}
+                onChange={(e) => setFeedbackText(e.target.value)}
+                onKeyDown={(e) => { if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) submitFeedback() }}
+                placeholder="Thoughts, suggestions, impressions…"
+                maxLength={500}
+                rows={2}
+                className="flex-1 resize-none rounded-xl px-3 py-2 text-sm outline-none transition-colors duration-200"
+                style={{
+                  backgroundColor: 'rgba(255,255,255,0.03)',
+                  border: '1px solid rgba(198,168,91,0.12)',
+                  color: '#AAA',
+                  fontFamily: 'var(--font-cormorant), serif',
+                  fontStyle: 'italic',
+                  fontSize: '0.875rem',
+                }}
+                onFocus={(e) => { e.currentTarget.style.borderColor = 'rgba(198,168,91,0.3)' }}
+                onBlur={(e)  => { e.currentTarget.style.borderColor = 'rgba(198,168,91,0.12)' }}
+              />
+              <button
+                type="button"
+                onClick={submitFeedback}
+                disabled={!feedbackText.trim() || feedbackStatus === 'sending'}
+                className="self-end sm:self-stretch px-4 rounded-xl text-[10px] tracking-[0.15em] uppercase transition-all duration-200 disabled:opacity-30"
+                style={{
+                  border: '1px solid rgba(198,168,91,0.25)',
+                  color: '#C6A85B',
+                  fontFamily: 'var(--font-cinzel), serif',
+                  minWidth: 80,
+                  backgroundColor: 'transparent',
+                  paddingTop: '0.5rem',
+                  paddingBottom: '0.5rem',
+                }}
+              >
+                {feedbackStatus === 'sending' ? '…' : feedbackStatus === 'error' ? 'Retry' : 'Send'}
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Bottom bar */}
